@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  # db:
+  #   image: postgres:11.5-alpine
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_USER=postgres
+  #     - POSTGRES_PASSWORD=postgres
+  #     - POSTGRES_DB=rust_service_dev
+  #   volumes:
+  #     - ./db:/var/lib/postgresql/data
+
+  rust:
+    build:
+      context: .
+      target: builder
+    command: ["tail", "-f", "/dev/null"] # Keeps the container running
+    volumes:
+      - .:/usr/src/myapp
+    # expose:
+    #   - "4000-4002"    
+    # ports:
+    #   - "4000-4002:4000-4002" 
+    # depends_on:
+    #   - db
+
+ #* Start docker services running `docker-compose up -d` (`docker-compose down` when you are done with everything)
+ #* Run `docker-compose exec rust bash` to go to the development environment
